@@ -1,9 +1,11 @@
-package br.ufpe.cin.if1001.chatoffline;
+package br.ufpe.cin.if1001.chatoffline.gui;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import br.ufpe.cin.if1001.chatoffline.R;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -32,6 +34,9 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+
+
+
         }
 
         return super.onOptionsItemSelected(item);

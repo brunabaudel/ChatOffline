@@ -1,6 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Chat Offline</string>
 
+    <string name="app_name">Chat</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Message List -->
+
+    <string name="text_message">Message</string>
+    <string name="hint_message">Escreva aqui</string>
+    <string name="button_send">Enviar</string>
+    
+    <!-- Contact List -->
+    
+    <string name="img_contact">Image</string>
+    <string name="text_contact">Name</string>
+
 </resources>

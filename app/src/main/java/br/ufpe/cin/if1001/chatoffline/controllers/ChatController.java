@@ -1,6 +1,5 @@
 package br.ufpe.cin.if1001.chatoffline.controllers;
 
-import br.ufpe.cin.if1001.chatoffline.gui.contact.Contact;
 import br.ufpe.cin.if1001.chatoffline.model.User;
 
 public class ChatController {
@@ -9,9 +8,15 @@ public class ChatController {
     {
         if(instance==null)
         {
-            instance = new ChatController(user);
+            instance = newInstance(user);
         }
 
+        return instance;
+    }
+
+    public static ChatController newInstance(User user)
+    {
+        instance = new ChatController(user);
         return instance;
     }
 
@@ -21,6 +26,7 @@ public class ChatController {
     }
 
     // VARS //
-    long id;
-    User me;
+    private long id;
+    private User me;
+
 }

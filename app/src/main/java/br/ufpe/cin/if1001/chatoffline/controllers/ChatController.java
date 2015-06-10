@@ -7,7 +7,7 @@ import br.ufpe.cin.if1001.chatoffline.model.InstantMessage;
 import br.ufpe.cin.if1001.chatoffline.model.User;
 
 public class ChatController {
-    static ChatController instance = null;
+    private static ChatController instance = null;
     public static ChatController getInstance(User user)
     {
         if(instance==null)
@@ -35,7 +35,7 @@ public class ChatController {
     // VARS //
     private long id;
     private User me;
-    Queue<InstantMessage> instantMessageQueue;
+    private Queue<InstantMessage> instantMessageQueue;
 
     /**
      * Enfileira uma mensagem para envio

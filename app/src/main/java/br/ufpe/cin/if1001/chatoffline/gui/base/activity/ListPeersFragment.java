@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
-import br.ufpe.cin.if1001.chatoffline.gui.contact.ListPeersAdapter;
-import br.ufpe.cin.if1001.chatoffline.gui.contact.Peer;
+import br.ufpe.cin.if1001.chatoffline.gui.listpeers.ListPeersAdapter;
+import br.ufpe.cin.if1001.chatoffline.gui.listpeers.Peer;
 
 
 public class ListPeersFragment extends Fragment {

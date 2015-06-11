@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#ff076efa</color>
+    <color name="colorPrimary">#ff4087fa</color>
     <color name="colorPrimaryDark">#ff5494ef</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
@@ -16,7 +16,7 @@
     <color name="blue_light_0">#ff3d91cb</color>
     <color name="blue_light_1">#E1F2EF</color>
     <color name="blue_light_2">#ff5761db</color>
-    <color name="blue_light_3">#96a1bbfa</color>
+    <color name="blue_light_3">#ffdee4fa</color>
     <color name="blue_light_4">#ffc3d4fa</color>
     
     <color name="green">#ff009900</color>

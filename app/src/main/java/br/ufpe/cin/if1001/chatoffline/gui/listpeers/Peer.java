@@ -1,4 +1,4 @@
-package br.ufpe.cin.if1001.chatoffline.gui.contact;
+package br.ufpe.cin.if1001.chatoffline.gui.listpeers;
 
 public class Peer {
 	

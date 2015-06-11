@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/abc_btn_radio_to_on_mtrl_000"
+            android:src="@drawable/octopus_filled_50"
             android:scaleType="fitCenter"
             android:layout_centerInParent="true" />
 

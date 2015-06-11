@@ -1,10 +1,11 @@
-package br.ufpe.cin.if1001.chatoffline.gui.contact;
+package br.ufpe.cin.if1001.chatoffline.gui.listpeers;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Collections;
@@ -50,10 +51,12 @@ public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.List
 
     class ListPeersViewHolder extends RecyclerView.ViewHolder {
         TextView name;
+        ImageView image;
 
         public ListPeersViewHolder(View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.name);
+            image = (ImageView) view.findViewById(R.id.image);
         }
     }
 }

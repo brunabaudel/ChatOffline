@@ -41,7 +41,7 @@
 
     <!-- Message List -->
 
-    <string name="text_message">Message</string>
+    <string name="text_message">Mensagem</string>
     <string name="hint_message">Escreva aqui</string>
     <string name="button_send">Enviar</string>
     

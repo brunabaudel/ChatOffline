@@ -37,11 +37,12 @@ public class ChatController {
     private User me;
     private Queue<InstantMessage> instantMessageQueue;
 
+
     /**
      * Enfileira uma mensagem para envio
      * @param message mensagem a ser enviada
      */
-    public void QueueMessage(InstantMessage message)
+    public void enqueueMessage(InstantMessage message)
     {
         instantMessageQueue.add(message);
     }
@@ -54,6 +55,4 @@ public class ChatController {
     {
         return instantMessageQueue.poll();
     }
-
-
 }

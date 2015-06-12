@@ -14,6 +14,7 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:background="@drawable/shape_image"
             android:src="@drawable/octopus_filled_50"
             android:scaleType="fitCenter"
             android:layout_centerInParent="true" />

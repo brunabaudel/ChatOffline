@@ -19,6 +19,7 @@ public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.List
     List<Peer> items = Collections.emptyList();
     private LayoutInflater inflater;
     private Context context;
+    OnItemClickListener mItemClickListener;
 
     public ListPeersAdapter(Context context, List<Peer> items) {
         this.context = context;
@@ -33,7 +34,7 @@ public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.List
 
     @Override
     public ListPeersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.list_peer_row, parent, false);
+        View view = inflater.inflate(R.layout.list_peers_cardview_row, parent, false);
         ListPeersViewHolder listPeersHolder = new ListPeersViewHolder(view);
         return listPeersHolder;
     }
@@ -49,14 +50,28 @@ public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.List
         return items.size();
     }
 
-    class ListPeersViewHolder extends RecyclerView.ViewHolder {
+    class ListPeersViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name;
-        ImageView image;
 
         public ListPeersViewHolder(View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.name);
-            image = (ImageView) view.findViewById(R.id.image);
+            view.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if (mItemClickListener != null) {
+                mItemClickListener.onItemClick(v, getPosition());
+            }
+        }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view , int position);
+    }
+
+    public void setOnItemClickListener(final OnItemClickListener itemClickListener) {
+        this.mItemClickListener = itemClickListener;
     }
 }

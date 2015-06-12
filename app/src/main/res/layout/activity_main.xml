@@ -19,8 +19,8 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/toolbar"
-                layout="@layout/toolbar" />
+                android:id="@+id/toolbar_main"
+                layout="@layout/toolbar_main" />
         </LinearLayout>
 
         <FrameLayout
@@ -31,7 +31,6 @@
 
 
     </LinearLayout>
-
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"

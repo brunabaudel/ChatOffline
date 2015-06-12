@@ -5,7 +5,7 @@
     <item>
         <bitmap
             android:gravity="center|fill"
-            android:src="@drawable/finn" />
+            android:src="@drawable/backg" />
     </item>
 
 </layer-list>

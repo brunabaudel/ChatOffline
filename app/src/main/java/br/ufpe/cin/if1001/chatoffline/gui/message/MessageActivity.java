@@ -1,65 +1,36 @@
 package br.ufpe.cin.if1001.chatoffline.gui.message;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
 
-public class MessageActivity extends Activity implements View.OnClickListener {
+public class MessageActivity extends AppCompatActivity {
 
-    private ListView mListViewMessage;
-    private Button mButtonSend;
-    private EditText mEditMessage;
-    private List<Message> mListMessage;
-    private MessageAdapter mChatMessageAdapter;
+    private static String TAG = MessageActivity.class.getSimpleName();
+
+    private Toolbar mToolbar;
+    private MessageFragment messageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
-        initViews();
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_message);
 
-        mListMessage = new ArrayList<>();
+        //setSupportActionBar(mToolbar);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        mChatMessageAdapter = new MessageAdapter(this, mListMessage);
-        mListViewMessage.setAdapter(mChatMessageAdapter);
-    }
+        //messageFragment = (MessageFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_messages);
+        //getSupportActionBar().setTitle("Nome do peer");
 
-    private void initViews() {
-        mListViewMessage = (ListView) findViewById(R.id.listViewMessage);
-        mButtonSend = (Button) findViewById(R.id.buttonSend);
-        mEditMessage = (EditText) findViewById(R.id.editMessage);
 
-        mButtonSend.setOnClickListener(this);
-    }
-
-/*
- * ListView
- */
-
-    private void addItemsToList() {
-        Message.TypeMessage typeMsg;
-        
-        if(flagTypeMessage){
-        	typeMsg = Message.TypeMessage.SEND_MESSAGE;
-        	flagTypeMessage = false;
-        } else {
-        	typeMsg = Message.TypeMessage.RECEIVED_MESSAGE;
-        	flagTypeMessage = true;
-        }
-    	
-    	mListMessage.add(new Message(mEditMessage.getText().toString(), typeMsg));
-        mChatMessageAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -69,7 +40,7 @@ public class MessageActivity extends Activity implements View.OnClickListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_message, menu);
         return true;
     }
 
@@ -82,17 +53,5 @@ public class MessageActivity extends Activity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    //Teste
 
-    private boolean flagTypeMessage = false;
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.buttonSend:
-                addItemsToList();
-                mEditMessage.setText("");
-                break;
-        }
-    }
 }

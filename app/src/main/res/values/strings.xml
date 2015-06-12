@@ -4,6 +4,7 @@
     <string name="app_name">ChatOff</string>
     <string name="action_settings">Configurações</string>
     <string name="action_search">Busca</string>
+    <string name="action_remove">Remove</string>
     <string name="drawer_open">Abrir</string>
     <string name="drawer_close">Fechar</string>
 

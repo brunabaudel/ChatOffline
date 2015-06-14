@@ -1,13 +1,10 @@
 package br.ufpe.cin.if1001.chatoffline.gui.message;
 
-/**
- * Created by Rafaell on 25/10/2014.
- */
 public class Message {
 
     public enum TypeMessage{
     	SEND_MESSAGE,
-    	RECEIVED_MESSAGE;
+    	RECEIVED_MESSAGE
     }
 	
 	private String message;

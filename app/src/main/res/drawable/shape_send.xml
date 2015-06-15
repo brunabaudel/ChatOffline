@@ -4,25 +4,9 @@
     <item>
         <shape
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="rectangle" >
+            android:shape="oval" >
             
-            <corners android:radius="8px" />
-            
-            <solid android:color="@color/a" />
-
-            <padding
-                android:bottom="3dp"
-                android:left="3dp"
-                android:right="3dp"
-                android:top="3dp" />
-        </shape>
-    </item>
-    <item>
-        <shape xmlns:android="http://schemas.android.com/apk/res/android" >
-            
-            <solid android:color="@color/a" />
-
-            <corners android:radius="10px" />
+            <solid android:color="@android:color/transparent" />
 
             <stroke
                 android:width="1dip"
@@ -34,6 +18,11 @@
                 android:right="10dp"
                 android:top="10dp" />
         </shape>
+    </item>
+    <item>
+        <bitmap
+            android:gravity="center|fill"
+            android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha" />
     </item>
 
 </layer-list>

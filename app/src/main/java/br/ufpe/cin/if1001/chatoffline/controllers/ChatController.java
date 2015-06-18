@@ -30,14 +30,13 @@ public class ChatController {
         instantMessageQueue = new ArrayDeque<InstantMessage>();
     }
 
-
-
     // VARS //
     private long id;
     private User me;
     private Queue<InstantMessage> instantMessageQueue;
 
 
+    // QUEUE CONTROL //
     /**
      * Enfileira uma mensagem para envio
      * @param message mensagem a ser enviada
@@ -55,4 +54,7 @@ public class ChatController {
     {
         return instantMessageQueue.poll();
     }
+
+
+
 }

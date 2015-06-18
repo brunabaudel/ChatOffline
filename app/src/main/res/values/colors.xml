@@ -10,7 +10,7 @@
 
     <color name="black">#ff000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="a">#2e6c746e</color>
+    <color name="a">#dcf1fff3</color>
     <color name="c">#32afe5ff</color>
     <color name="b">#328fffb8</color>
     
@@ -37,5 +37,6 @@
     
     
     <color name="blue_dark">#006283</color>
+    <color name="blue_dark2">#ffd8e8ff</color>
 
 </resources>

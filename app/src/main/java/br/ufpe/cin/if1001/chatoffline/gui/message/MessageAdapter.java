@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
+import br.ufpe.cin.if1001.chatoffline.model.data.Message;
 
 public class MessageAdapter extends BaseAdapter {
 
@@ -68,7 +69,7 @@ public class MessageAdapter extends BaseAdapter {
         	viewHolder.wrapper.setPadding(0, 0, 25, 0);
         }
 
-        viewHolder.mTxtMessage.getBackground().setAlpha(30);
+        viewHolder.mTxtMessage.getBackground().setAlpha(50);
 
         return view;
     }

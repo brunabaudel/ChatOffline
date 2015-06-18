@@ -1,4 +1,4 @@
-package br.ufpe.cin.if1001.chatoffline.gui.listpeers;
+package br.ufpe.cin.if1001.chatoffline.gui.friends;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,32 +11,38 @@ import java.util.Collections;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
+import br.ufpe.cin.if1001.chatoffline.model.data.Friend;
 
 
-public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.ListPeersViewHolder> {
+public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder> {
 
-    List<Peer> items = Collections.emptyList();
+    List<Friend> items = Collections.emptyList();
     private LayoutInflater inflater;
     private Context context;
     OnItemClickListener mItemClickListener;
 
-    public ListPeersAdapter(Context context, List<Peer> items) {
+    public FriendsAdapter(Context context, List<Friend> items) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.items = items;
     }
 
-    @Override
-    public ListPeersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.list_peers_cardview_row, parent, false);
-        ListPeersViewHolder listPeersHolder = new ListPeersViewHolder(view);
-        return listPeersHolder;
+    public void delete(int position) {
+        items.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override
-    public void onBindViewHolder(ListPeersViewHolder listPeersHolder, int position) {
-        Peer current = items.get(position);
-        listPeersHolder.name.setText(current.getName());
+    public FriendsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.friends_cardview_row, parent, false);
+        FriendsViewHolder friendsHolder = new FriendsViewHolder(view);
+        return friendsHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(FriendsViewHolder friendsViewHolder, int position) {
+        Friend current = items.get(position);
+        friendsViewHolder.name.setText(current.getName());
     }
 
     @Override
@@ -44,10 +50,10 @@ public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.List
         return items.size();
     }
 
-    class ListPeersViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class FriendsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name;
 
-        public ListPeersViewHolder(View view) {
+        public FriendsViewHolder(View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.name);
             view.setOnClickListener(this);
@@ -62,7 +68,7 @@ public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.List
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view , int position);
+        void onItemClick(View view, int position);
     }
 
     public void setOnItemClickListener(final OnItemClickListener itemClickListener) {

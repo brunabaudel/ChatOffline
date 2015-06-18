@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_rec"
+    android:background="@color/blue_dark"
     android:orientation="vertical"
-    android:layout_alignParentTop="true"
-    tools:context="br.ufpe.cin.if1001.chatoffline.gui.message.MessageActivity">
+    android:layout_alignParentTop="true">
 
     <LinearLayout
         android:id="@+id/container_toolbar"

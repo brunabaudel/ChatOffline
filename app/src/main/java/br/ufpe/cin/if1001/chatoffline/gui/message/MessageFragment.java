@@ -67,7 +67,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
         Message.TypeMessage typeMsg;
 
         if(flagTypeMessage){
-            typeMsg = Message.TypeMessage.SEND_MESSAGE;
+            typeMsg = Message.TypeMessage.SENT_MESSAGE;
             flagTypeMessage = false;
         } else {
             typeMsg = Message.TypeMessage.RECEIVED_MESSAGE;

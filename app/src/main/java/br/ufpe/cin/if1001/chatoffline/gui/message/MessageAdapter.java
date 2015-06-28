@@ -57,7 +57,7 @@ public class MessageAdapter extends BaseAdapter {
 
         viewHolder.mTxtMessage.setText(mMessageList.get(position).getMessage());
 
-        if(mMessageList.get(position).getTypeMessage().equals(Message.TypeMessage.SEND_MESSAGE)) {
+        if(mMessageList.get(position).getTypeMessage().equals(Message.TypeMessage.SENT_MESSAGE)) {
         	viewHolder.mTxtMessage.setBackgroundResource(R.mipmap.bubble_green);
         	viewHolder.mTxtMessage.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
         	viewHolder.wrapper.setGravity(Gravity.RIGHT);

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Message {
 
     public enum TypeMessage{
-    	SEND_MESSAGE,
+        SENT_MESSAGE,
     	RECEIVED_MESSAGE
     }
 
@@ -22,13 +22,13 @@ public class Message {
         this.message = message;
         this.received = received;
         this.date = date;
-        this.typeMessage = received ? TypeMessage.RECEIVED_MESSAGE : TypeMessage.SEND_MESSAGE;
+        this.typeMessage = received ? TypeMessage.RECEIVED_MESSAGE : TypeMessage.SENT_MESSAGE;
     }
 
     public Message(int idFriend, String message, Date date, TypeMessage typeMessage) {
         this.idFriend = idFriend;
         this.message = message;
-        this.received = typeMessage == TypeMessage.RECEIVED_MESSAGE ? true : false;
+        this.received = (typeMessage == TypeMessage.RECEIVED_MESSAGE);
         this.date = date;
         this.typeMessage = typeMessage;
     }

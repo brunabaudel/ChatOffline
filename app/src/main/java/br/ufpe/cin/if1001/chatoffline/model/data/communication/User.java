@@ -1,4 +1,4 @@
-package br.ufpe.cin.if1001.chatoffline.model;
+package br.ufpe.cin.if1001.chatoffline.model.data.communication;
 
 public class User {
     private final long id;

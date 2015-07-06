@@ -11,23 +11,23 @@ public class ChatDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ChatDatabase";
 
-    private static final String TABLE_FRIEND = "table_friend";
-    private static final String _ID_FRIEND = "_id";
-    private static final String NAME = "name";
-    private static final String MAC_ADDRESS = "mac_address";
+    static final String TABLE_FRIEND = "table_friend";
+    static final String _ID_FRIEND = "_id";
+    static final String NAME = "name";
+    static final String MAC_ADDRESS = "mac_address";
 
-    private static final String TABLE_MESSAGES = "table_messages";
-    private static final String _ID_MESSAGES = "_id";
-    private static final String ID_FRIEND = "id_friend";
-    private static final String MESSAGE = "message";
-    private static final String RECEIVED = "received";
-    private static final String DATE = "date";
+    static final String TABLE_MESSAGES = "table_messages";
+    static final String _ID_MESSAGES = "_id";
+    static final String ID_FRIEND = "id_friend";
+    static final String MESSAGE = "message";
+    static final String RECEIVED = "received";
+    static final String DATE = "date";
 
     private String CREATE_TABLE_FRIEND = "CREATE TABLE " + TABLE_FRIEND
             + "("
             + _ID_FRIEND + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + MAC_ADDRESS + " TEXT,"
-            + NAME + " TEXT"
+            + NAME + " TEXT,"
+            + MAC_ADDRESS + " TEXT"
             + ")";
 
     private String CREATE_TABLE_MESSAGES = "CREATE TABLE " + TABLE_MESSAGES
@@ -37,7 +37,7 @@ public class ChatDatabaseHelper extends SQLiteOpenHelper {
             + MESSAGE + " TEXT,"
             + RECEIVED + " BOOLEAN,"
             + DATE + " DATETIME,"
-            + "FOREIGN KEY(" + ID_FRIEND + ") REFERENCES" + TABLE_FRIEND + "(" + _ID_FRIEND + ")"
+            + "FOREIGN KEY(" + ID_FRIEND + ") REFERENCES " + TABLE_FRIEND + "(" + _ID_FRIEND + ")"
             + ")";
 
     public ChatDatabaseHelper(Context context) {

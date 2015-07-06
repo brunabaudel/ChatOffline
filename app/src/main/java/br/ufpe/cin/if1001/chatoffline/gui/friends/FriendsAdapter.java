@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
-import br.ufpe.cin.if1001.chatoffline.model.data.Friend;
+import br.ufpe.cin.if1001.chatoffline.model.gui.Friend;
 
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder> {
@@ -48,6 +48,10 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsV
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public Friend getItem(int position) {
+        return items.get(position);
     }
 
     class FriendsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

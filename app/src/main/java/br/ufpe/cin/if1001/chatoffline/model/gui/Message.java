@@ -1,6 +1,4 @@
-package br.ufpe.cin.if1001.chatoffline.model.data;
-
-import java.sql.Date;
+package br.ufpe.cin.if1001.chatoffline.model.gui;
 
 public class Message {
 
@@ -13,10 +11,10 @@ public class Message {
     private int idFriend;
 	private String message;
     private boolean received;
-    private Date date;
+    private String date;
 	private TypeMessage typeMessage;
 
-    public Message(int id, int idFriend, String message, boolean received, Date date) {
+    public Message(int id, int idFriend, String message, boolean received, String date) {
         this.id = id;
         this.idFriend = idFriend;
         this.message = message;
@@ -25,7 +23,7 @@ public class Message {
         this.typeMessage = received ? TypeMessage.RECEIVED_MESSAGE : TypeMessage.SENT_MESSAGE;
     }
 
-    public Message(int idFriend, String message, Date date, TypeMessage typeMessage) {
+    public Message(int idFriend, String message, String date, TypeMessage typeMessage) {
         this.idFriend = idFriend;
         this.message = message;
         this.received = (typeMessage == TypeMessage.RECEIVED_MESSAGE);
@@ -62,11 +60,11 @@ public class Message {
         this.received = received;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -85,5 +83,5 @@ public class Message {
 	public void setTypeMessage(TypeMessage typeMessage) {
 		this.typeMessage = typeMessage;
 	}
-    
+
 }

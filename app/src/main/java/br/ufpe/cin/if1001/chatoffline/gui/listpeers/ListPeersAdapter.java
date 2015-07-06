@@ -11,16 +11,17 @@ import java.util.Collections;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
+import br.ufpe.cin.if1001.chatoffline.model.gui.Friend;
 
 
 public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.ListPeersViewHolder> {
 
-    List<Peer> items = Collections.emptyList();
+    List<Friend> items = Collections.emptyList();
     private LayoutInflater inflater;
     private Context context;
     OnItemClickListener mItemClickListener;
 
-    public ListPeersAdapter(Context context, List<Peer> items) {
+    public ListPeersAdapter(Context context, List<Friend> items) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.items = items;
@@ -35,13 +36,17 @@ public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.List
 
     @Override
     public void onBindViewHolder(ListPeersViewHolder listPeersHolder, int position) {
-        Peer current = items.get(position);
+        Friend current = items.get(position);
         listPeersHolder.name.setText(current.getName());
     }
 
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public Friend getItem(int position) {
+        return items.get(position);
     }
 
     class ListPeersViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

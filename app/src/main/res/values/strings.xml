@@ -8,11 +8,11 @@
     <string name="drawer_open">Abrir</string>
     <string name="drawer_close">Fechar</string>
 
-    <string name="nav_item_friends">Amigos</string>
+    <string name="nav_item_friends">Conversas</string>
     <string name="nav_item_details">Detalhes</string>
 
     <string name="title_list_peers">Lista de Peers</string>
-    <string name="title_friends">Amigos</string>
+    <string name="title_friends">Conversas</string>
     <string name="title_details">Detalhes</string>
 
     <!-- navigation drawer items  -->

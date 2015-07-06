@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import br.ufpe.cin.if1001.chatoffline.R;
+import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
+import br.ufpe.cin.if1001.chatoffline.model.data.communication.User;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -22,10 +24,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
 
+    public static ChatController chatController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        User user = new User(1, "Bruna", "");
+
+        chatController = ChatController.getInstance(user, getApplicationContext());
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
 

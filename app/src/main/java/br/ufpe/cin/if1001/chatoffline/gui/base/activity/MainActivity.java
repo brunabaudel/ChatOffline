@@ -14,6 +14,10 @@ import android.widget.Toast;
 
 import br.ufpe.cin.if1001.chatoffline.R;
 import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
+import br.ufpe.cin.if1001.chatoffline.gui.base.details.DetailsFragment;
+import br.ufpe.cin.if1001.chatoffline.gui.base.friends.FriendsFragment;
+import br.ufpe.cin.if1001.chatoffline.gui.base.listpeers.ListPeersFragment;
+import br.ufpe.cin.if1001.chatoffline.gui.base.navdrawer.FragmentDrawer;
 import br.ufpe.cin.if1001.chatoffline.model.data.communication.User;
 
 

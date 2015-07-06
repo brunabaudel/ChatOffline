@@ -1,4 +1,4 @@
-package br.ufpe.cin.if1001.chatoffline.gui.friends;
+package br.ufpe.cin.if1001.chatoffline.gui.base.friends;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,4 +1,4 @@
-package br.ufpe.cin.if1001.chatoffline.gui.base.activity;
+package br.ufpe.cin.if1001.chatoffline.gui.base.listpeers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
-import br.ufpe.cin.if1001.chatoffline.gui.listpeers.ListPeersAdapter;
+import br.ufpe.cin.if1001.chatoffline.gui.base.activity.MainActivity;
 import br.ufpe.cin.if1001.chatoffline.gui.message.MessageActivity;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 

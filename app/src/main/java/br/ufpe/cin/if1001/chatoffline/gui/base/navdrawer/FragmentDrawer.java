@@ -1,4 +1,4 @@
-package br.ufpe.cin.if1001.chatoffline.gui.base.activity;
+package br.ufpe.cin.if1001.chatoffline.gui.base.navdrawer;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
-import br.ufpe.cin.if1001.chatoffline.gui.base.navdrawer.NavDrawerItem;
-import br.ufpe.cin.if1001.chatoffline.gui.base.navdrawer.NavigationDrawerAdapter;
 
 
 public class FragmentDrawer extends Fragment {

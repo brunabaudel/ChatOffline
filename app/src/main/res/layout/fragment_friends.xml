@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/blue_light_0"
-    tools:context="br.ufpe.cin.if1001.chatoffline.gui.base.activity.FriendsFragment">
+    tools:context="br.ufpe.cin.if1001.chatoffline.gui.base.friends.FriendsFragment">
 
 
     <android.support.v7.widget.RecyclerView

@@ -1,4 +1,4 @@
-package br.ufpe.cin.if1001.chatoffline.gui.base.activity;
+package br.ufpe.cin.if1001.chatoffline.gui.base.details;
 
 import android.app.Activity;
 import android.os.Bundle;

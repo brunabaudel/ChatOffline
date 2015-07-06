@@ -73,6 +73,23 @@ public class ChatDAO {
         return success;
     }
 
+    private boolean deleteMessages(Friend friend) {
+
+        db = mHelper.getWritableDatabase();
+
+        //boolean success = deletar todas as menssagens daquele amigo
+
+        //if(success){
+
+        boolean success = db.delete(mHelper.TABLE_FRIEND, mHelper.MAC_ADDRESS + "=" +
+                friend.getMacAddress(), null) > 0;
+        //}
+
+        db.close();
+
+        return success;
+    }
+
     public List<Friend> getAllFriends() {
 
         List<Friend> friendsList = new ArrayList<Friend>();

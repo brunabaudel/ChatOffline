@@ -9,8 +9,8 @@ import java.util.Queue;
 import br.ufpe.cin.if1001.chatoffline.model.data.communication.InstantMessage;
 import br.ufpe.cin.if1001.chatoffline.model.data.communication.User;
 import br.ufpe.cin.if1001.chatoffline.model.database.ChatDAO;
-import br.ufpe.cin.if1001.chatoffline.model.gui.Friend;
-import br.ufpe.cin.if1001.chatoffline.model.gui.Message;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Message;
 
 public class ChatController {
 

@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
-import br.ufpe.cin.if1001.chatoffline.model.gui.Friend;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 
 
 public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.ListPeersViewHolder> {

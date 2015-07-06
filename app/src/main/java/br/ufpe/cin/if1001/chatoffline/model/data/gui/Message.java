@@ -1,4 +1,4 @@
-package br.ufpe.cin.if1001.chatoffline.model.gui;
+package br.ufpe.cin.if1001.chatoffline.model.data.gui;
 
 public class Message {
 

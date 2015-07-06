@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import br.ufpe.cin.if1001.chatoffline.R;
-import br.ufpe.cin.if1001.chatoffline.model.gui.Friend;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 
 public class MessageActivity extends AppCompatActivity {
 

@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
-import br.ufpe.cin.if1001.chatoffline.model.gui.Message;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Message;
 
 public class MessageAdapter extends BaseAdapter {
 

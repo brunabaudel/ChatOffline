@@ -17,8 +17,7 @@ import java.util.List;
 import br.ufpe.cin.if1001.chatoffline.R;
 import br.ufpe.cin.if1001.chatoffline.gui.friends.FriendsAdapter;
 import br.ufpe.cin.if1001.chatoffline.gui.message.MessageActivity;
-import br.ufpe.cin.if1001.chatoffline.model.database.ChatDAO;
-import br.ufpe.cin.if1001.chatoffline.model.gui.Friend;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 
 
 public class FriendsFragment extends Fragment {

@@ -8,8 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufpe.cin.if1001.chatoffline.model.gui.Friend;
-import br.ufpe.cin.if1001.chatoffline.model.gui.Message;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Message;
+
 
 public class ChatDAO {
 

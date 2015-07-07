@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Message;
 
 public class MessageFragment extends Fragment implements View.OnClickListener {
@@ -25,7 +26,6 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
     private EditText mEditMessage;
     private List<Message> mListMessage;
     private MessageAdapter mChatMessageAdapter;
-
 
     public MessageFragment() {
     }
@@ -64,23 +64,29 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
  */
 
     private void addItemsToList() {
-        Message.TypeMessage typeMsg;
 
-        if(flagTypeMessage){
-            typeMsg = Message.TypeMessage.SENT_MESSAGE;
-            flagTypeMessage = false;
-        } else {
-            typeMsg = Message.TypeMessage.RECEIVED_MESSAGE;
-            flagTypeMessage = true;
+        Message message = new Message(mEditMessage.getText().toString(), Message.TypeMessage.SENT_MESSAGE);
+
+        mListMessage.add(message);
+
+        if(getActivity() instanceof OnMessageListener) {
+            ((OnMessageListener) getActivity()).sendMessage(message);
         }
 
-        mListMessage.add(new Message(mEditMessage.getText().toString(), typeMsg));
         mChatMessageAdapter.notifyDataSetChanged();
     }
 
-    //Teste
 
-    private boolean flagTypeMessage = false;
+    public void receiveMessage(Message message){
+
+        mListMessage.add(message);
+        mChatMessageAdapter.notifyDataSetChanged();
+    }
+
+    public void loadMessages(List<Message> messages){
+        mListMessage.addAll(messages);
+        mChatMessageAdapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onClick(View view) {
@@ -101,4 +107,10 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
     public void onDetach() {
         super.onDetach();
     }
+
+    interface OnMessageListener {
+        void sendMessage(Message message);
+    }
+
+
 }

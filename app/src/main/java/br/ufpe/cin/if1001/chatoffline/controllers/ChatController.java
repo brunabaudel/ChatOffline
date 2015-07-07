@@ -69,7 +69,12 @@ public class ChatController {
     // BANCO DE DADOS CONTROL //
 
     public boolean insertPeer(Friend friend){
-        return dao.insertPeer(friend);
+        boolean success = false;
+
+        if(!friendExist(friend.getMacAddress())) {
+            success = dao.insertPeer(friend);
+        }
+        return success;
     }
 
     public boolean deletePeer(Friend friend){
@@ -80,8 +85,19 @@ public class ChatController {
         return dao.insertMessage(message);
     }
 
+    public List<Message> getAllMessages(int idFriend) {
+        return dao.getAllMessages(idFriend);
+    }
+
     public List<Friend> getAllFriends(){
         return dao.getAllFriends();
     }
 
+    public Friend getFriendByMac(String mac){
+        return dao.getFriendByMac(mac);
+    }
+
+    public boolean friendExist(String mac){
+        return dao.getFriendByMac(mac) != null;
+    }
 }

@@ -8,18 +8,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import br.ufpe.cin.if1001.chatoffline.R;
+import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
+import br.ufpe.cin.if1001.chatoffline.model.data.communication.TransMessage;
+import br.ufpe.cin.if1001.chatoffline.model.data.communication.User;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Message;
 
-public class MessageActivity extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity implements MessageFragment.OnMessageListener {
 
     private static String TAG = MessageActivity.class.getSimpleName();
 
     private Toolbar mToolbar;
 
+    public static ChatController chatController;
+
+    private MessageFragment mMessageFragment;
+
+    private Friend mFriend;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+
+        User user = new User(1, "Bruna", "");
+
+        chatController = ChatController.getInstance(user, getApplicationContext());
+
+        mMessageFragment = (MessageFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_messages);
 
         Intent i = getIntent();
 
@@ -28,11 +44,11 @@ public class MessageActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        Friend friend = null;
-
         if(i.getExtras() != null){
-            friend = i.getParcelableExtra("FRIEND");
-            getSupportActionBar().setTitle(friend.getName());
+            mFriend = i.getParcelableExtra("FRIEND");
+            getSupportActionBar().setTitle(mFriend.getName());
+
+            mMessageFragment.loadMessages(chatController.getAllMessages(mFriend.getId()));
         }
 
     }
@@ -57,5 +73,31 @@ public class MessageActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void sendMessage(Message message) {
+        message.setIdFriend(mFriend.getId());
+        chatController.insertMessage(message);
 
+        TransMessage transMessage = new TransMessage();
+        transMessage.setMacSender(mFriend.getMacAddress());
+        transMessage.setContentMessage("Oi, tudo bem?");
+        receiveMessage(transMessage);
+    }
+
+    public void receiveMessage(TransMessage message) {
+        Friend friend = chatController.getFriendByMac(message.getMacSender());
+
+        if(friend == null) {
+            //Salva o usuário no banco
+        } else if(!friend.getName().equals(message.getName())){
+            //atualiza usuário
+        }
+
+        //mFriend = friend;
+
+        Message mes = new Message(message.getContentMessage(), Message.TypeMessage.RECEIVED_MESSAGE);
+        mes.setIdFriend(mFriend.getId());
+        chatController.insertMessage(mes);
+        mMessageFragment.receiveMessage(mes);
+    }
 }

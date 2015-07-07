@@ -31,8 +31,16 @@ public class Message {
         this.typeMessage = typeMessage;
     }
 
+    public Message(int idFriend, String message, TypeMessage typeMessage) {
+        this.idFriend = idFriend;
+        this.message = message;
+        this.received = (typeMessage == TypeMessage.RECEIVED_MESSAGE);
+        this.typeMessage = typeMessage;
+    }
+
     public Message(String message, TypeMessage typeMessage) {
         this.message = message;
+        this.received = (typeMessage == TypeMessage.RECEIVED_MESSAGE);
         this.typeMessage = typeMessage;
     }
 

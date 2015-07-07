@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        User user = new User(1, "Bruna", "");
+        User user = new User(1, "Bruna", ""); //shared preferences
 
         chatController = ChatController.getInstance(user, getApplicationContext());
 

@@ -80,6 +80,8 @@ public class ListPeersFragment extends Fragment {
                     Toast.makeText(getActivity(), peer.getName(), Toast.LENGTH_LONG).show();
                 }
 
+                peer = MainActivity.chatController.getFriendByMac(peer.getMacAddress());
+
                 i.putExtra("FRIEND", (Parcelable)peer);
 
                 getActivity().startActivity(i);

@@ -73,6 +73,33 @@ public class ChatDAO {
         return success;
     }
 
+    public List<Message> getAllMessages(int idFriend) {
+
+        List<Message> messagesList = new ArrayList<Message>();
+
+        String selectQuery = "SELECT * FROM " + mHelper.TABLE_MESSAGES + " WHERE " + mHelper.ID_FRIEND + " = " + idFriend;
+
+        db = mHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+
+                Message message = new Message(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getInt(3) == 1, cursor.getString(4));
+                messagesList.add(message);
+
+            } while (cursor.moveToNext());
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        db.close();
+
+        return messagesList;
+    }
+
     private boolean deleteMessages(Friend friend) {
 
         db = mHelper.getWritableDatabase();
@@ -102,7 +129,7 @@ public class ChatDAO {
         if (cursor.moveToFirst()) {
             do {
 
-                Friend friend = new Friend(cursor.getString(1), cursor.getString(2));
+                Friend friend = new Friend(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
                 friendsList.add(friend);
 
             } while (cursor.moveToNext());
@@ -115,6 +142,28 @@ public class ChatDAO {
         db.close();
 
         return friendsList;
+    }
+
+    public Friend getFriendByMac(String mac) {
+
+        Friend friend = null;
+
+        String selectQuery = "SELECT * FROM " + mHelper.TABLE_FRIEND + " WHERE " + mHelper.MAC_ADDRESS + " = '" + mac + "'";
+
+        db = mHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            friend = new Friend(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        db.close();
+
+        return friend;
     }
 
 

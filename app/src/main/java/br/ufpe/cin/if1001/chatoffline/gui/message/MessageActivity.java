@@ -13,6 +13,7 @@ import br.ufpe.cin.if1001.chatoffline.model.data.communication.TransMessage;
 import br.ufpe.cin.if1001.chatoffline.model.data.communication.User;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Message;
+import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
 
 public class MessageActivity extends AppCompatActivity implements MessageFragment.OnMessageListener {
 
@@ -31,9 +32,7 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
-        User user = new User(1, "Bruna", "");
-
-        chatController = ChatController.getInstance(user, getApplicationContext());
+        chatController = ChatController.getInstance(UserPreferences.getUser(getApplicationContext()), getApplicationContext());
 
         mMessageFragment = (MessageFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_messages);
 

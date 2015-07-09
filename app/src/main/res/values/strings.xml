@@ -8,6 +8,10 @@
     <string name="drawer_open">Abrir</string>
     <string name="drawer_close">Fechar</string>
 
+    <string name="initial_text">Bem-vindo ao Chat P2P</string>
+    <string name="type_name">Digite seu nome</string>
+    <string name="btn_username">Entrar</string>
+
     <string name="nav_item_friends">Conversas</string>
     <string name="nav_item_details">Detalhes</string>
 

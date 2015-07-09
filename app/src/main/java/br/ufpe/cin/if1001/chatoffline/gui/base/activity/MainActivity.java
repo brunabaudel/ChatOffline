@@ -16,9 +16,10 @@ import br.ufpe.cin.if1001.chatoffline.R;
 import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
 import br.ufpe.cin.if1001.chatoffline.gui.base.details.DetailsFragment;
 import br.ufpe.cin.if1001.chatoffline.gui.base.friends.FriendsFragment;
+import br.ufpe.cin.if1001.chatoffline.gui.base.initial.UsernameActivity;
 import br.ufpe.cin.if1001.chatoffline.gui.base.listpeers.ListPeersFragment;
 import br.ufpe.cin.if1001.chatoffline.gui.base.navdrawer.FragmentDrawer;
-import br.ufpe.cin.if1001.chatoffline.model.data.communication.User;
+import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -33,11 +34,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        User user = new User(1, "Bruna", ""); //shared preferences
+        //User user = new User(1, "Bruna", ""); //shared preferences
 
-        chatController = ChatController.getInstance(user, getApplicationContext());
+        chatController = ChatController.getInstance(UserPreferences.getUser(getApplicationContext()), getApplicationContext());
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
 
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment.setDrawerListener(this);
 
         displayView(0);
+
+
     }
 
 
@@ -88,8 +92,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     private void displayView(int position) {
+
         Fragment fragment = null;
         String title = getString(R.string.app_name);
+
         switch (position) {
             case 0:
                 fragment = new ListPeersFragment();

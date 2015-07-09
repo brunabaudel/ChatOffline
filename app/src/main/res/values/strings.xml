@@ -17,7 +17,7 @@
 
     <string name="title_list_peers">Lista de Peers</string>
     <string name="title_friends">Conversas</string>
-    <string name="title_details">Detalhes</string>
+    <string name="title_details">Configuração</string>
 
     <!-- navigation drawer items  -->
     <string-array name="nav_drawer_labels">
@@ -43,13 +43,17 @@
         <item>@string/test_3</item>
     </string-array>
 
-
     <!-- Message List -->
 
     <string name="text_message">Mensagem</string>
     <string name="hint_message">Escreva aqui</string>
     <string name="button_send">Enviar</string>
-    
+
+
+    <!-- Details List -->
+
+    <string name="config_username">Nome:</string>
+    <string name="config_mac">Mac address:</string>
 
 
 </resources>

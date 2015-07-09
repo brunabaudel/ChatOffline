@@ -13,11 +13,15 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
+import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
 
 
 public class FragmentDrawer extends Fragment {
@@ -31,6 +35,8 @@ public class FragmentDrawer extends Fragment {
     private View containerView;
     private static String[] titles = null;
     private FragmentDrawerListener drawerListener;
+
+    private TextView perfilName;
 
     public FragmentDrawer() {
 
@@ -64,6 +70,9 @@ public class FragmentDrawer extends Fragment {
 
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
+        perfilName = (TextView) layout.findViewById(R.id.perfil_name);
+
+        perfilName.setText(UserPreferences.getUser(getActivity()).getName());
 
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);

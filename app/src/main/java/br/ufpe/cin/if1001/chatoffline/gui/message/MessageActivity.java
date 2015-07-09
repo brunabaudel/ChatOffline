@@ -7,10 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Random;
+
 import br.ufpe.cin.if1001.chatoffline.R;
 import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
 import br.ufpe.cin.if1001.chatoffline.model.data.communication.TransMessage;
-import br.ufpe.cin.if1001.chatoffline.model.data.communication.User;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Message;
 import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
@@ -26,6 +27,8 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
     private MessageFragment mMessageFragment;
 
     private Friend mFriend;
+
+    private String[] testMessages = new String[] {"Oi", "Tudo bem e vc?", "Meu nome é Gabriela", "e o seu?", "sim", "não", "talvez", "quem sabe...", "sou de Olinda", "e aee"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,9 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_remove) {
+            //chatController.deletePeer(mFriend);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -79,7 +85,7 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
 
         TransMessage transMessage = new TransMessage();
         transMessage.setMacSender(mFriend.getMacAddress());
-        transMessage.setContentMessage("Oi, tudo bem?");
+        transMessage.setContentMessage(testMessages[random()]);
         receiveMessage(transMessage);
     }
 
@@ -98,5 +104,11 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
         mes.setIdFriend(mFriend.getId());
         chatController.insertMessage(mes);
         mMessageFragment.receiveMessage(mes);
+    }
+
+    private int random() {
+        Random gerador = new Random();
+
+        return gerador.nextInt(10);
     }
 }

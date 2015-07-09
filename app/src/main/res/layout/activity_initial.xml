@@ -13,8 +13,9 @@
         android:hint="@string/type_name"
         android:ems="10"
         android:id="@+id/username"
-        android:textColor="@color/white"
         android:layout_gravity="center_horizontal"
+        android:background="@drawable/rounded_edges_scop_dark_auto"
+        android:layout_margin="20dp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

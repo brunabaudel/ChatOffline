@@ -36,7 +36,7 @@ public class InitialActivity extends Activity {
                 startActivity(intent);
                 finish();
             }
-        }, 1000);
+        }, 100);
     }
 
 

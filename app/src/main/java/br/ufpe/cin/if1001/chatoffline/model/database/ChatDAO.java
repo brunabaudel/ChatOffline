@@ -42,13 +42,10 @@ public class ChatDAO {
 
         db = mHelper.getWritableDatabase();
 
-        //boolean success = deletar todas as menssagens daquele amigo
+        String query = String.format("DELETE FROM " + mHelper.TABLE_MESSAGES + " WHERE " + mHelper.ID_FRIEND + " = " + friend.getId() + ")");
+        db.execSQL(query);
 
-        //if(success){
-
-        boolean success = db.delete(mHelper.TABLE_FRIEND, mHelper.MAC_ADDRESS + "=" +
-                friend.getMacAddress(), null) > 0;
-        //}
+        boolean success = db.delete(mHelper.TABLE_FRIEND, mHelper.MAC_ADDRESS + " = " + friend.getMacAddress(), null) > 0;
 
         db.close();
 
@@ -105,6 +102,7 @@ public class ChatDAO {
         db = mHelper.getWritableDatabase();
 
         //boolean success = deletar todas as menssagens daquele amigo
+
 
         //if(success){
 

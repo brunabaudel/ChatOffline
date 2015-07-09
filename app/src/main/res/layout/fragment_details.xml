@@ -7,14 +7,52 @@
 
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/config_name"
         android:layout_alignParentTop="true"
         android:layout_marginTop="100dp"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="45dp"
-        android:text="Detalhes"
+        android:text="@string/config_username"
+        android:textColor="@color/white"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="20dp"
         android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/config_edt_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:layout_alignTop="@+id/config_name"
+        android:layout_toRightOf="@+id/config_name"
+        android:layout_toEndOf="@+id/config_name" />
+
+    <TextView
+        android:id="@+id/config_macaddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/config_mac"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/config_name"
+        android:layout_alignLeft="@+id/config_name"
+        android:layout_alignStart="@+id/config_name" />
+
+    <TextView
+        android:id="@+id/config_edt_macaddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/config_macaddress"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/config_macaddress"
+        android:layout_toEndOf="@+id/config_macaddress" />
 
 </RelativeLayout>

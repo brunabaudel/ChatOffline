@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,9 +93,13 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
            case R.id.buttonSend:
-                addItemsToList();
-                mEditMessage.setText("");
-                break;
+               if(!mEditMessage.getText().toString().equals("")) {
+                   addItemsToList();
+                   mEditMessage.setText("");
+               } else {
+                   Toast.makeText(getActivity(), "Digite uma mensagem", Toast.LENGTH_SHORT).show();
+               }
+               break;
         }
     }
 

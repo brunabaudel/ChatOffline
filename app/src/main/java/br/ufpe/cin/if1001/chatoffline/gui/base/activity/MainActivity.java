@@ -16,7 +16,6 @@ import br.ufpe.cin.if1001.chatoffline.R;
 import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
 import br.ufpe.cin.if1001.chatoffline.gui.base.details.DetailsFragment;
 import br.ufpe.cin.if1001.chatoffline.gui.base.friends.FriendsFragment;
-import br.ufpe.cin.if1001.chatoffline.gui.base.initial.UsernameActivity;
 import br.ufpe.cin.if1001.chatoffline.gui.base.listpeers.ListPeersFragment;
 import br.ufpe.cin.if1001.chatoffline.gui.base.navdrawer.FragmentDrawer;
 import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
@@ -36,8 +35,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
-        //User user = new User(1, "Bruna", ""); //shared preferences
 
         chatController = ChatController.getInstance(UserPreferences.getUser(getApplicationContext()), getApplicationContext());
 

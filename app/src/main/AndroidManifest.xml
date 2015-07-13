@@ -1,4 +1,4 @@
-<?xml version="1.1" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.ufpe.cin.if1001.chatoffline" >
 
@@ -9,31 +9,36 @@
         android:theme="@style/MyMaterialTheme" >
         <activity
             android:name=".gui.base.initial.InitialActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".gui.base.activity.MainActivity"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".gui.base.activity.MainActivity"
+            android:screenOrientation="portrait" >
         </activity>
-
-        <activity android:name=".gui.base.initial.UsernameActivity"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".gui.base.initial.UsernameActivity"
+            android:screenOrientation="portrait" >
         </activity>
-
-        <activity android:name=".gui.message.MessageActivity"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".gui.message.MessageActivity"
+            android:screenOrientation="portrait" >
         </activity>
 
         <service
-            android:name=".controllers.services.ChatService"
+            android:name=".controllers.services.SenderSevice"
             android:enabled="true"
             android:exported="false" >
+        </service>
+        <service
+            android:name=".controllers.services.ServerService"
+            android:enabled="true"
+            android:exported="true" >
         </service>
     </application>
 

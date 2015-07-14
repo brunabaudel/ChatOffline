@@ -5,10 +5,6 @@ import android.content.SharedPreferences;
 
 import br.ufpe.cin.if1001.chatoffline.model.data.communication.User;
 
-
-/**
- * Created by brunabaudel on 06/07/15.
- */
 public class UserPreferences {
 
         private static final String PREFS_NAME = "Preferences";

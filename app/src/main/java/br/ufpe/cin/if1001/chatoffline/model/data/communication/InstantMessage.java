@@ -1,53 +1,66 @@
 package br.ufpe.cin.if1001.chatoffline.model.data.communication;
 
-import android.util.JsonReader;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class InstantMessage {
-    private final String msgContent;
-    private final User sender, recipient;
-    private final long sentTimestamp;
 
-    public InstantMessage(String msgContent, User sender, User recipient, long sentTimestamp) {
-        this.msgContent = msgContent;
-        this.sender = sender;
-        this.recipient = recipient;
-        this.sentTimestamp = sentTimestamp;
+    private String macSender;
+    private String name;
+    private String contentMessage;
+
+    public InstantMessage() {
     }
 
-    public String getMsgContent() {
-        return msgContent;
+    public InstantMessage(String macSender, String name, String contentMessage) {
+        this.macSender = macSender;
+        this.name = name;
+        this.contentMessage = contentMessage;
     }
 
-    public User getSender() {
-        return sender;
+    public String getMacSender() {
+        return macSender;
     }
 
-    public User getRecipient() {
-        return recipient;
+    public void setMacSender(String macSender) {
+        this.macSender = macSender;
     }
 
-    public long getSentTimestamp() {
-        return sentTimestamp;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getContentMessage() {
+        return contentMessage;
+    }
+
+    public void setContentMessage(String contentMessage) {
+        this.contentMessage = contentMessage;
     }
 
     public JSONObject toJSON() throws JSONException
     {
         JSONObject json = new JSONObject();
 
-        json.put("msgContent",msgContent);
-        //...
-
+        json.put("macSender", macSender);
+        json.put("name", name);
+        json.put("contentMessage", contentMessage);
 
         return json;
     }
 
-    public InstantMessage fromJSON(String json) throws JSONException
+    public static InstantMessage fromJSON(String json) throws JSONException
     {
-        JSONObject olar = new JSONObject(json);
+        JSONObject jsonObject = new JSONObject(json);
 
-        return new InstantMessage(null, null, null, 0);
+        String macSender = jsonObject.getString("macSender");
+        String name = jsonObject.getString("name");
+        String contentMessage = jsonObject.getString("contentMessage");
+
+        return new InstantMessage(macSender, name, contentMessage);
     }
 }

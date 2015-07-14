@@ -18,7 +18,7 @@ public class ChatController {
 
     public static ChatController getInstance(User user, Context ctx)
     {
-        if(instance==null)
+        if(instance == null)
         {
             instance = newInstance(user, ctx);
         }

@@ -11,7 +11,7 @@ import java.util.Random;
 
 import br.ufpe.cin.if1001.chatoffline.R;
 import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
-import br.ufpe.cin.if1001.chatoffline.model.data.communication.TransMessage;
+import br.ufpe.cin.if1001.chatoffline.model.data.communication.InstantMessage;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Message;
 import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
@@ -83,13 +83,13 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
         message.setIdFriend(mFriend.getId());
         chatController.insertMessage(message);
 
-        TransMessage transMessage = new TransMessage();
-        transMessage.setMacSender(mFriend.getMacAddress());
-        transMessage.setContentMessage(testMessages[random()]);
-        receiveMessage(transMessage);
+        InstantMessage instantMessage = new InstantMessage();
+        instantMessage.setMacSender(mFriend.getMacAddress());
+        instantMessage.setContentMessage(testMessages[random()]);
+        receiveMessage(instantMessage);
     }
 
-    public void receiveMessage(TransMessage message) {
+    public void receiveMessage(InstantMessage message) {
         Friend friend = chatController.getFriendByMac(message.getMacSender());
 
         if(friend == null) {

@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
+import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
 import br.ufpe.cin.if1001.chatoffline.gui.base.activity.MainActivity;
 import br.ufpe.cin.if1001.chatoffline.gui.message.MessageActivity;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
+import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
 
 
 public class ListPeersFragment extends Fragment {
@@ -27,6 +29,8 @@ public class ListPeersFragment extends Fragment {
     private RecyclerView recyclerView;
     private ListPeersAdapter adapter;
     private static List<Friend> peers = null;
+
+    public static ChatController chatController;
 
     public ListPeersFragment() {
 
@@ -48,6 +52,8 @@ public class ListPeersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        chatController = ChatController.getInstance(UserPreferences.getUser(getActivity()), getActivity());
 
         peers = new ArrayList<Friend>();
         peers.add(new Friend("Bruna", "155:123:123:876"));
@@ -76,7 +82,9 @@ public class ListPeersFragment extends Fragment {
 
                 Friend peer = adapter.getItem(position);
 
-                if (MainActivity.chatController.insertPeer(peer)) {
+                boolean success = chatController.insertPeer(peer);
+
+                if (success) {
                     Toast.makeText(getActivity(), peer.getName(), Toast.LENGTH_LONG).show();
                 }
 

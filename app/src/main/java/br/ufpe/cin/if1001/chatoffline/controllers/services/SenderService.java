@@ -16,7 +16,7 @@ import java.io.StringBufferInputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class SenderSevice extends IntentService {
+public class SenderService extends IntentService {
     
     private final String LOG_TAG = "LOG_DEBUG";
     private static final int SOCKET_TIMEOUT = 5000;
@@ -25,7 +25,7 @@ public class SenderSevice extends IntentService {
     public static final String EXTRAS_ADDRESS = "go_host";
     public static final String EXTRAS_PORT = "go_port";
 
-    public SenderSevice(String name) {
+    public SenderService(String name) {
         super(name);
     }
 

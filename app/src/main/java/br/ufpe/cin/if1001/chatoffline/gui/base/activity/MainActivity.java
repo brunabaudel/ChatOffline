@@ -1,5 +1,6 @@
 package br.ufpe.cin.if1001.chatoffline.gui.base.activity;
 
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,8 +28,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-
     public static ChatController chatController;
+
+    private boolean isWifiP2PEnabled;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,5 +120,17 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
             getSupportActionBar().setTitle(title);
         }
+    }
+
+    public void setIsWifiP2pEnabled(boolean b) {
+        isWifiP2PEnabled = b;
+    }
+
+    public void resetData() {
+//        cleanPeerList();
+    }
+
+    public WifiP2pManager.PeerListListener getDefaultPeerListListener() {
+        return null; //TODO: ver isso aqui
     }
 }

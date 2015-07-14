@@ -1,5 +1,8 @@
 package br.ufpe.cin.if1001.chatoffline.gui.base.activity;
 
+import android.content.Context;
+import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 
 import br.ufpe.cin.if1001.chatoffline.R;
 import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
+import br.ufpe.cin.if1001.chatoffline.controllers.receivers.WiFiDirectBroadcastReceiver;
 import br.ufpe.cin.if1001.chatoffline.gui.base.details.DetailsFragment;
 import br.ufpe.cin.if1001.chatoffline.gui.base.friends.FriendsFragment;
 import br.ufpe.cin.if1001.chatoffline.gui.base.listpeers.ListPeersFragment;
@@ -29,12 +33,27 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
     public static ChatController chatController;
+    private WiFiDirectBroadcastReceiver statusReceiver;
+
+    private WifiP2pManager manager;
+    private WifiP2pManager.Channel channel;
+    IntentFilter intentFilter;
 
     private boolean isWifiP2PEnabled;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+
+        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        channel = manager.initialize(this, getMainLooper(), null);
+
 
         setContentView(R.layout.activity_main);
 
@@ -54,6 +73,18 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        statusReceiver = new WiFiDirectBroadcastReceiver(manager, channel, this);
+        registerReceiver(statusReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(statusReceiver);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             return true;
         }
 
-        if(id == R.id.action_search){
+        if (id == R.id.action_search) {
             Toast.makeText(getApplicationContext(), "Buscando novos peers", Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -128,6 +159,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     public void resetData() {
 //        cleanPeerList();
+    }
+
+    public void updateMyDevice(WifiP2pDevice me)
+    {
+
     }
 
     public WifiP2pManager.PeerListListener getDefaultPeerListListener() {

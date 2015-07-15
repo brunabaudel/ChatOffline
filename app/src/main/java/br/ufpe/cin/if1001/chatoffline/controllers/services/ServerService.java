@@ -80,7 +80,7 @@ public class ServerService extends Service implements WifiP2pManager.ConnectionI
     public boolean sendMessage(WifiP2pDevice recipient, InstantMessage msg)
     {
         String localIP = Utils.getLocalIPAddress();
-        Log.i("DEGUG", recipient+"");
+        Log.i("DEGUG", "sendMessage: Recipient = "+recipient);
         String client_mac_fixed = new String(recipient.deviceAddress).replace("99", "19"); //workaround para pegar o ip do /proc/net/arp
         String clientIP = Utils.getIPFromMac(client_mac_fixed);
         Intent serviceIntent = new Intent(this,SenderService.class);

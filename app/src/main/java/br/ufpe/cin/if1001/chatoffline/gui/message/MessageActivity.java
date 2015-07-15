@@ -44,7 +44,7 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
         setContentView(R.layout.activity_message);
         mBound = false;
         Intent it = new Intent(MessageActivity.this, ServerService.class);
-        bindService(it,mConnection, Context.BIND_AUTO_CREATE );
+        mBound = bindService(it,mConnection, Context.BIND_AUTO_CREATE );
 
 
         chatController = ChatController.getInstance(UserPreferences.getUser(getApplicationContext()), getApplicationContext());

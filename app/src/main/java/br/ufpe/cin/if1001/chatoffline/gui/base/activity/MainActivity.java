@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     public WifiP2pManager.PeerListListener getDefaultPeerListListener() {
-        return null; //TODO: ver isso aqui
+
+        return (ListPeersFragment)getSupportFragmentManager().findFragmentById(R.id.container_body); //TODO: ver isso aqui
     }
 }

@@ -115,4 +115,5 @@ public class ListPeersFragment extends Fragment implements WifiP2pManager.PeerLi
         adapter.notifyDataSetChanged();
 
     }
+
 }

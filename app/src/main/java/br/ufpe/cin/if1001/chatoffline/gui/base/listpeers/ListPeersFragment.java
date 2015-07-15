@@ -1,6 +1,9 @@
 package br.ufpe.cin.if1001.chatoffline.gui.base.listpeers;
 
 import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pDeviceList;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -22,7 +25,7 @@ import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
 
 
-public class ListPeersFragment extends Fragment {
+public class ListPeersFragment extends Fragment implements WifiP2pManager.PeerListListener {
 
     private static String TAG = ListPeersFragment.class.getSimpleName();
 
@@ -35,7 +38,7 @@ public class ListPeersFragment extends Fragment {
     public ListPeersFragment() {
 
     }
-
+/*
     public static List<Friend> getData() {
         List<Friend> data = new ArrayList<>();
 
@@ -47,7 +50,7 @@ public class ListPeersFragment extends Fragment {
         }
 
         return data;
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,10 +59,10 @@ public class ListPeersFragment extends Fragment {
         chatController = ChatController.getInstance(UserPreferences.getUser(getActivity()), getActivity());
 
         peers = new ArrayList<Friend>();
-        peers.add(new Friend("Bruna", "155:123:123:876"));
-        peers.add(new Friend("Leu", "152:123:123:876"));
-        peers.add(new Friend("Rafa", "154:123:123:876"));
-        peers.add(new Friend("Rodrigo", "156:123:123:876"));
+//        peers.add(new Friend("Bruna", "155:123:123:876"));
+//        peers.add(new Friend("Leu", "152:123:123:876"));
+//        peers.add(new Friend("Rafa", "154:123:123:876"));
+//        peers.add(new Friend("Rodrigo", "156:123:123:876"));
 
     }
 
@@ -70,7 +73,7 @@ public class ListPeersFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_list_peers, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.list_peers);
 
-        adapter = new ListPeersAdapter(getActivity(), getData());
+        adapter = new ListPeersAdapter(getActivity(), this.peers);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -99,4 +102,17 @@ public class ListPeersFragment extends Fragment {
         return layout;
     }
 
+    @Override
+    public void onPeersAvailable(WifiP2pDeviceList peersList) {
+
+        peers.clear();
+
+        for (WifiP2pDevice device : peersList.getDeviceList()) {
+            Friend peer = new Friend(device.deviceName, device.deviceAddress);
+            this.peers.add(peer);
+        }
+
+        adapter.notifyDataSetChanged();
+
+    }
 }

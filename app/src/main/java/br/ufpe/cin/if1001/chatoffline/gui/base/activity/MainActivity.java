@@ -109,7 +109,19 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         }
 
         if (id == R.id.action_search) {
-            Toast.makeText(getApplicationContext(), "Buscando novos peers", Toast.LENGTH_SHORT).show();
+
+            manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+                @Override
+                public void onSuccess() {
+                    Toast.makeText(getApplicationContext(), "Buscando novos peers", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(int reasonCode) {
+                    Toast.makeText(getApplicationContext(), "Falha na busca por peers", Toast.LENGTH_SHORT).show();
+                }
+            });
+
             return true;
         }
 

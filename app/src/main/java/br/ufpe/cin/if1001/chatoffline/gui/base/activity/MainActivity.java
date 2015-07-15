@@ -3,6 +3,7 @@ package br.ufpe.cin.if1001.chatoffline.gui.base.activity;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.ufpe.cin.if1001.chatoffline.R;
 import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
 import br.ufpe.cin.if1001.chatoffline.controllers.receivers.WiFiDirectBroadcastReceiver;
@@ -23,10 +26,11 @@ import br.ufpe.cin.if1001.chatoffline.gui.base.details.DetailsFragment;
 import br.ufpe.cin.if1001.chatoffline.gui.base.friends.FriendsFragment;
 import br.ufpe.cin.if1001.chatoffline.gui.base.listpeers.ListPeersFragment;
 import br.ufpe.cin.if1001.chatoffline.gui.base.navdrawer.FragmentDrawer;
+import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
 
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, WifiP2pManager.PeerListListener {
 
     private static String TAG = MainActivity.class.getSimpleName();
 
@@ -179,7 +183,14 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     public WifiP2pManager.PeerListListener getDefaultPeerListListener() {
+        return this;
+    }
 
-        return (ListPeersFragment)getSupportFragmentManager().findFragmentById(R.id.container_body); //TODO: ver isso aqui
+    @Override
+    public void onPeersAvailable(WifiP2pDeviceList peers) {
+
+        ListPeersFragment listPeersFragment = (ListPeersFragment) getSupportFragmentManager().findFragmentById(R.id.container_body);
+        listPeersFragment.setPeersList(peers);
+
     }
 }

@@ -25,7 +25,7 @@ import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
 
 
-public class ListPeersFragment extends Fragment implements WifiP2pManager.PeerListListener {
+public class ListPeersFragment extends Fragment {
 
     private static String TAG = ListPeersFragment.class.getSimpleName();
 
@@ -102,8 +102,7 @@ public class ListPeersFragment extends Fragment implements WifiP2pManager.PeerLi
         return layout;
     }
 
-    @Override
-    public void onPeersAvailable(WifiP2pDeviceList peersList) {
+    public void setPeersList(WifiP2pDeviceList peersList) {
 
         peers.clear();
 

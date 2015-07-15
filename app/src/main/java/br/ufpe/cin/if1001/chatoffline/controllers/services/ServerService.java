@@ -40,8 +40,8 @@ public class ServerService extends Service implements WifiP2pManager.ConnectionI
         return me;
     }
 
-    private ServerService() {
-
+    public ServerService() {
+        super();
     }
 
     @Override

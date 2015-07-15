@@ -107,7 +107,7 @@ public class ListPeersFragment extends Fragment {
         peers.clear();
 
         for (WifiP2pDevice device : peersList.getDeviceList()) {
-            Friend peer = new Friend(device.deviceName, device.deviceAddress);
+            Friend peer = new Friend(device.deviceName, device.deviceAddress, device);
             this.peers.add(peer);
         }
 

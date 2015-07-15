@@ -1,5 +1,6 @@
 package br.ufpe.cin.if1001.chatoffline.model.data.gui;
 
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -14,6 +15,7 @@ public class Friend implements Parcelable {
 	private String name;
 	private String macAddress;
     private Status status;
+    private WifiP2pDevice device;
 
     public Friend() {}
 
@@ -31,7 +33,8 @@ public class Friend implements Parcelable {
         this.status = Status.STATUS_OFFLINE;
     }
 
-    public Friend(String name, String macAddress) {
+    public Friend(String name, String macAddress, WifiP2pDevice device) {
+        this.device = device;
         this.name = name;
         this.macAddress = macAddress;
         this.status = Status.STATUS_ONLINE;
@@ -69,6 +72,13 @@ public class Friend implements Parcelable {
         this.status = status;
     }
 
+    public WifiP2pDevice getDevice() {
+        return device;
+    }
+
+    public void setDevice(WifiP2pDevice device) {
+        this.device = device;
+    }
 
     public Friend(Parcel in){
 

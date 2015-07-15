@@ -1,7 +1,11 @@
 package br.ufpe.cin.if1001.chatoffline.gui.message;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,6 +15,7 @@ import java.util.Random;
 
 import br.ufpe.cin.if1001.chatoffline.R;
 import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
+import br.ufpe.cin.if1001.chatoffline.controllers.services.ServerService;
 import br.ufpe.cin.if1001.chatoffline.model.data.communication.InstantMessage;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Message;
@@ -21,19 +26,26 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
     private static String TAG = MessageActivity.class.getSimpleName();
 
     private Toolbar mToolbar;
+    boolean mBound;
+
+    ServerService serverService;
 
     public static ChatController chatController;
 
     private MessageFragment mMessageFragment;
-
+    ServerService.ServiceBinder serviceBinder;
     private Friend mFriend;
 
-    private String[] testMessages = new String[] {"Oi", "Tudo bem e vc?", "Meu nome é Gabriela", "e o seu?", "sim", "não", "talvez", "quem sabe...", "sou de Olinda", "e aee"};
+    private String[] testMessages = new String[]{"Oi", "Tudo bem e vc?", "Meu nome é Gabriela", "e o seu?", "sim", "não", "talvez", "quem sabe...", "sou de Olinda", "e aee"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        mBound = false;
+        Intent it = new Intent(MessageActivity.this, ServerService.class);
+        bindService(it,mConnection, Context.BIND_AUTO_CREATE );
+
 
         chatController = ChatController.getInstance(UserPreferences.getUser(getApplicationContext()), getApplicationContext());
 
@@ -46,7 +58,7 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        if(i.getExtras() != null){
+        if (i.getExtras() != null) {
             mFriend = i.getParcelableExtra("FRIEND");
             getSupportActionBar().setTitle(mFriend.getName());
 
@@ -56,7 +68,23 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
     }
 
     /**
-     *
+     * Service
+     */
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            serviceBinder = (ServerService.ServiceBinder) service;
+            serverService = serviceBinder.getServerService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mBound = false;
+        }
+    };
+
+    /**
      * Menu
      */
 
@@ -83,18 +111,27 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
         message.setIdFriend(mFriend.getId());
         chatController.insertMessage(message);
 
-        InstantMessage instantMessage = new InstantMessage();
-        instantMessage.setMacSender(mFriend.getMacAddress());
-        instantMessage.setContentMessage(testMessages[random()]);
-        receiveMessage(instantMessage);
+        //TODO: verificar fila de envio (tá implementada no service)
+
+        if (mBound) //se tenho service
+        {
+            InstantMessage instantMessage = new InstantMessage();
+            instantMessage.setMacSender(mFriend.getMacAddress());
+            instantMessage.setContentMessage(message.getMessage());
+            serverService.sendMessage(mFriend.getDevice(), instantMessage);
+        }
+//        InstantMessage instantMessage = new InstantMessage();
+//        instantMessage.setMacSender(mFriend.getMacAddress());
+//        instantMessage.setContentMessage(testMessages[random()]);
+//        receiveMessage(instantMessage);
     }
 
     public void receiveMessage(InstantMessage message) {
         Friend friend = chatController.getFriendByMac(message.getMacSender());
 
-        if(friend == null) {
+        if (friend == null) {
             //Salva o usuário no banco
-        } else if(!friend.getName().equals(message.getName())){
+        } else if (!friend.getName().equals(message.getName())) {
             //atualiza usuário
         }
 

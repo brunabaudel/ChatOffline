@@ -64,7 +64,7 @@ public class ServerService extends Service implements WifiP2pManager.ConnectionI
     }
 
     public class ServiceBinder extends Binder {
-        ServerService getServerService() {
+        public ServerService getServerService() {
             return getInstance();
         }
     }
@@ -122,7 +122,7 @@ public class ServerService extends Service implements WifiP2pManager.ConnectionI
                 Log.i("DEGUG", "UHUL, CHEOGU CONEXAO");
 
                 String message = readMessage(client.getInputStream());
-
+                Log.i("DEGUG", "MSg=  "+message);
                 //TODO: enviar isso pro DAO
 
 

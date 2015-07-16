@@ -30,16 +30,6 @@ public class ServerService extends Service implements WifiP2pManager.ConnectionI
     private final IBinder mBinder = new ServiceBinder();
     private static ServerAsyncTask asyncTask = null;
 
-
-    private static ServerService me = null;
-
-    public static ServerService getInstance() {
-        if (me == null) {
-            me = new ServerService();
-        }
-        return me;
-    }
-
     public ServerService() {
         super();
     }
@@ -65,7 +55,7 @@ public class ServerService extends Service implements WifiP2pManager.ConnectionI
 
     public class ServiceBinder extends Binder {
         public ServerService getServerService() {
-            return getInstance();
+            return ServerService.this;
         }
     }
 

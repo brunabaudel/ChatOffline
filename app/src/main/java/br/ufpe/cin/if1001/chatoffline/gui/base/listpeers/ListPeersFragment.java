@@ -31,7 +31,7 @@ public class ListPeersFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ListPeersAdapter adapter;
-    private static List<Friend> peers = null;
+    private static List<WifiP2pDevice> peers = null;
 
     public static ChatController chatController;
 
@@ -58,7 +58,7 @@ public class ListPeersFragment extends Fragment {
 
         chatController = ChatController.getInstance(UserPreferences.getUser(getActivity()), getActivity());
 
-        peers = new ArrayList<Friend>();
+        peers = new ArrayList<WifiP2pDevice>();
 //        peers.add(new Friend("Bruna", "155:123:123:876"));
 //        peers.add(new Friend("Leu", "152:123:123:876"));
 //        peers.add(new Friend("Rafa", "154:123:123:876"));
@@ -83,17 +83,20 @@ public class ListPeersFragment extends Fragment {
             public void onItemClick(View v, int position) {
                 Intent i = new Intent(getActivity(), MessageActivity.class);
 
-                Friend peer = adapter.getItem(position);
+                WifiP2pDevice peer = adapter.getItem(position);
 
-                boolean success = chatController.insertPeer(peer);
+                Friend friend = new Friend(peer.deviceName, peer.deviceAddress, peer);
+
+                boolean success = chatController.insertPeer(friend);
 
                 if (success) {
-                    Toast.makeText(getActivity(), peer.getName(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), friend.getName(), Toast.LENGTH_LONG).show();
                 }
 
-                peer = MainActivity.chatController.getFriendByMac(peer.getMacAddress());
+                friend = chatController.getFriendByMac(friend.getMacAddress());
 
-                i.putExtra("FRIEND", (Parcelable)peer);
+                i.putExtra("WIFIP2P", (Parcelable)peer);
+                i.putExtra("FRIEND", (Parcelable)friend);
 
                 getActivity().startActivity(i);
             }
@@ -106,10 +109,12 @@ public class ListPeersFragment extends Fragment {
 
         peers.clear();
 
-        for (WifiP2pDevice device : peersList.getDeviceList()) {
+        peers.addAll(peersList.getDeviceList());
+
+        /*for (WifiP2pDevice device : peersList.getDeviceList()) {
             Friend peer = new Friend(device.deviceName, device.deviceAddress, device);
-            this.peers.add(peer);
-        }
+            //this.peers.add(peer);
+        }*/
 
         adapter.notifyDataSetChanged();
 

@@ -15,10 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
+import br.ufpe.cin.if1001.chatoffline.controllers.ChatController;
 import br.ufpe.cin.if1001.chatoffline.gui.base.activity.MainActivity;
 import br.ufpe.cin.if1001.chatoffline.gui.base.friends.FriendsAdapter;
 import br.ufpe.cin.if1001.chatoffline.gui.message.MessageActivity;
 import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
+import br.ufpe.cin.if1001.chatoffline.model.user.UserPreferences;
 
 
 public class FriendsFragment extends Fragment {
@@ -26,12 +28,13 @@ public class FriendsFragment extends Fragment {
     private RecyclerView recyclerView;
     private FriendsAdapter adapter;
     private static List<Friend> friends = null;
+    private ChatController chatController;
 
     public FriendsFragment() {
     }
 
     private void setListFriends(){
-        friends.addAll(MainActivity.chatController.getAllFriends());
+        friends.addAll(chatController.getAllFriends());
     }
 
     @Override
@@ -39,6 +42,7 @@ public class FriendsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         friends = new ArrayList<Friend>();
+        chatController = ChatController.getInstance(UserPreferences.getUser(getActivity()), getActivity());
     }
 
     @Override

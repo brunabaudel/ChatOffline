@@ -4,10 +4,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -34,6 +36,7 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
 
     private MessageFragment mMessageFragment;
     ServerService.ServiceBinder serviceBinder;
+    private WifiP2pDevice mWifi;
     private Friend mFriend;
 
     private String[] testMessages = new String[]{"Oi", "Tudo bem e vc?", "Meu nome é Gabriela", "e o seu?", "sim", "não", "talvez", "quem sabe...", "sou de Olinda", "e aee"};
@@ -59,8 +62,10 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         if (i.getExtras() != null) {
+            mWifi = i.getParcelableExtra("WIFIP2P");
+            getSupportActionBar().setTitle(mWifi.deviceName);
+
             mFriend = i.getParcelableExtra("FRIEND");
-            getSupportActionBar().setTitle(mFriend.getName());
 
             mMessageFragment.loadMessages(chatController.getAllMessages(mFriend.getId()));
         }
@@ -115,10 +120,12 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
 
         if (mBound) //se tenho service
         {
+
+            Log.d("DEVICEEEE", mWifi.deviceAddress);
             InstantMessage instantMessage = new InstantMessage();
-            instantMessage.setMacSender(mFriend.getMacAddress());
+            instantMessage.setMacSender(mWifi.deviceAddress);
             instantMessage.setContentMessage(message.getMessage());
-            serverService.sendMessage(mFriend.getDevice(), instantMessage);
+            serverService.sendMessage(mWifi, instantMessage);
         }
 //        InstantMessage instantMessage = new InstantMessage();
 //        instantMessage.setMacSender(mFriend.getMacAddress());

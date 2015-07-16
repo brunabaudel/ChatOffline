@@ -85,6 +85,7 @@ public class Friend implements Parcelable {
         this.id = in.readInt();
         this.name = in.readString();
         this.macAddress = in.readString();
+        this.device = (WifiP2pDevice) in.readParcelable(WifiP2pDevice.class.getClassLoader());
     }
 
     @Override
@@ -97,6 +98,7 @@ public class Friend implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(macAddress);
+        dest.writeParcelable(device, flags);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

@@ -1,6 +1,7 @@
 package br.ufpe.cin.if1001.chatoffline.gui.base.listpeers;
 
 import android.content.Context;
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +12,15 @@ import java.util.Collections;
 import java.util.List;
 
 import br.ufpe.cin.if1001.chatoffline.R;
-import br.ufpe.cin.if1001.chatoffline.model.data.gui.Friend;
-
 
 public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.ListPeersViewHolder> {
 
-    List<Friend> items = Collections.emptyList();
+    List<WifiP2pDevice> items = Collections.emptyList();
     private LayoutInflater inflater;
     private Context context;
     OnItemClickListener mItemClickListener;
 
-    public ListPeersAdapter(Context context, List<Friend> items) {
+    public ListPeersAdapter(Context context, List<WifiP2pDevice> items) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.items = items;
@@ -36,8 +35,8 @@ public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.List
 
     @Override
     public void onBindViewHolder(ListPeersViewHolder listPeersHolder, int position) {
-        Friend current = items.get(position);
-        listPeersHolder.name.setText(current.getName());
+        WifiP2pDevice current = items.get(position);
+        listPeersHolder.name.setText(current.deviceName);
     }
 
     @Override
@@ -45,7 +44,7 @@ public class ListPeersAdapter extends RecyclerView.Adapter<ListPeersAdapter.List
         return items.size();
     }
 
-    public Friend getItem(int position) {
+    public WifiP2pDevice getItem(int position) {
         return items.get(position);
     }
 

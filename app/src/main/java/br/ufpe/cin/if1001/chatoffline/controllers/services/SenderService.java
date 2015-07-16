@@ -25,8 +25,8 @@ public class SenderService extends IntentService {
     public static final String EXTRAS_ADDRESS = "go_host";
     public static final String EXTRAS_PORT = "go_port";
 
-    public SenderService(String name) {
-        super(name);
+    public SenderService() {
+        super("SenderService");
     }
 
     @Override

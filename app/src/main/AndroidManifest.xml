@@ -38,7 +38,7 @@
         </activity>
 
         <service
-            android:name=".controllers.services.SenderService"
+            android:name="SenderService"
             android:enabled="true"
             android:exported="false" >
         </service>

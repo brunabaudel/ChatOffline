@@ -27,6 +27,8 @@ public class SenderService extends IntentService implements WifiP2pManager.Actio
     public static final String EXTRAS_PORT = "go_port";
 
 
+    WifiP2pManager manager;
+    WifiP2pManager.Channel channel;
     String host,jsonMessage,mac;
     int port;
 
@@ -51,9 +53,9 @@ public class SenderService extends IntentService implements WifiP2pManager.Actio
     }
 
     private void connect(WifiP2pConfig configuration) {
-        WifiP2pManager manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
-        WifiP2pManager.Channel channel = manager.initialize(this, getMainLooper(), null);
-        manager.connect(channel, configuration,this);
+        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+       channel = manager.initialize(this, getMainLooper(), null);
+        manager.connect(channel, configuration, this);
     }
 
     private WifiP2pConfig getP2PConnectionConfiguration(String mac) {
@@ -73,7 +75,7 @@ public class SenderService extends IntentService implements WifiP2pManager.Actio
 
     @Override
     public void onFailure(int reason) {
-        Log.i("DEGUG","SENDER SERVICE: FALHA de conexão via p2p");
+        Log.i("DEGUG", "SENDER SERVICE: FALHA de conexão via p2p");
     }
 
     void sendData()
@@ -119,5 +121,21 @@ public class SenderService extends IntentService implements WifiP2pManager.Actio
         } catch (Exception e) {
             Log.e(LOG_TAG, e.getMessage());
         }
+
+        disconnect();
+    }
+
+    private void disconnect() {
+        manager.removeGroup(channel, new WifiP2pManager.ActionListener() {
+            @Override
+            public void onSuccess() {
+                Log.d(LOG_TAG,"Disconnected");
+            }
+
+            @Override
+            public void onFailure(int reason) {
+                Log.d(LOG_TAG,"FALHA NA DESCONEXAO !???");
+            }
+        });
     }
 }

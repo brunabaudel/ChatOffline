@@ -29,7 +29,7 @@ import android.util.Log;
 import br.ufpe.cin.if1001.chatoffline.gui.base.activity.MainActivity;
 
 /**
- * Receceiver que recebe notificações de eventos no WifiP2P
+ * Receceiver que recebe notificaï¿½ï¿½es de eventos no WifiP2P
  */
 public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
 
@@ -55,6 +55,9 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        Log.d("Degug22", "BROADS");
+
         String action = intent.getAction();
         if (WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION.equals(action)) {
 
@@ -88,8 +91,9 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                     .getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
 
             if (networkInfo.isConnected()) {
-                //Aqui sabemos que temos conexão com outro dispositivo,
-                // pode ser usado pra triggar a comunicação
+                //Aqui sabemos que temos conexï¿½o com outro dispositivo,
+                // pode ser usado pra triggar a comunicaï¿½ï¿½o
+
 
                 //TODO: precisa da instancia aqui do ServerService para listener
                 manager.requestConnectionInfo(channel, null );

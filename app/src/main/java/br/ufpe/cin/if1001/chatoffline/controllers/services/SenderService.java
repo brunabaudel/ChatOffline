@@ -32,6 +32,8 @@ public class SenderService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
+        Log.d(LOG_TAG, "ENTROU!!!!");
+
         Context context = getApplicationContext();
         if (intent.getAction().equals(ACTION_SEND_MESSAGE)) {            
             String host = intent.getExtras().getString(EXTRAS_ADDRESS);

@@ -59,14 +59,17 @@ public class Utils {
 					InetAddress inetAddress = enumIpAddr.nextElement();
 
 					String iface = intf.getName();
+
+                    Log.d("DEbug222", iface);
+
 					if(iface.matches(".*" +p2pInt+ ".*") || iface.matches(".*" +"wlan0"+ ".*")){ //workaround para fabricantes bugados
 						if (inetAddress instanceof Inet4Address) { //gambi
 							return getDottedDecimalIP(inetAddress.getAddress());
 						} else {
-							Log.d("Debug222", "Não entoru no if de DENTRO! " + inetAddress);
+							Log.d("Debug222", "Não entrou no if de DENTRO! " + inetAddress);
 						}
 					} else {
-						Log.d("Debug222", "Não entoru no if de fora! " + iface);
+						Log.d("Debug222", "Não entrou no if de fora! " + iface);
 					}
 				}
 			}

@@ -65,6 +65,7 @@ public class MessageActivity extends AppCompatActivity implements MessageFragmen
             mWifi = i.getParcelableExtra("WIFIP2P");
             getSupportActionBar().setTitle(mWifi.deviceName);
 
+
             mFriend = i.getParcelableExtra("FRIEND");
 
             mMessageFragment.loadMessages(chatController.getAllMessages(mFriend.getId()));
